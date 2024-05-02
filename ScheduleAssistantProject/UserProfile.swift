@@ -11,10 +11,10 @@ import UIKit
 class UserProfile: UIViewController {
     private let userName = UILabel()
     private let userMajor = UILabel()
-    private let currentSchedule = UILabel()
+    private var currentSchedule = UILabel()
     private let pastSchedule = UILabel()
     
-    private var users: [User] = User.dummyData2
+    private var user: User = User.dummyData2
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
@@ -22,17 +22,19 @@ class UserProfile: UIViewController {
         setUpUserName()
         setUpUserMajor()
         setUpCurrentSchedule()
+        setUpPastSchedule()
     }
     
-    func configure(user: User) {
-        userName.text = user.user_name
-        userMajor.text = user.major
-        currentSchedule.text = String(user.current_schedule.count)
-        pastSchedule.text = String(user.past_classes.count)
-    }
+//    func configure(user: User) {
+////        userName.text = user.user_name
+////        userMajor.text = user.major
+////        currentSchedule.text = String(user.current_schedule.count)
+////        pastSchedule.text = String(user.past_classes.count)
+//    }
     
     
     private func setUpUserName(){
+        userName.text = user.user_name
         userName.textColor = UIColor.black
         userName.font = .systemFont(ofSize: 16, weight: .semibold)
         
@@ -40,12 +42,13 @@ class UserProfile: UIViewController {
         userName.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            userName.topAnchor.constraint(equalTo: view.topAnchor),
-            userName.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            userName.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
+            userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 125)
         ])
     }
     
     private func setUpUserMajor(){
+        userMajor.text = user.major
         userMajor.textColor = UIColor.black
         userMajor.font = .systemFont(ofSize: 16, weight: .semibold)
         
@@ -54,11 +57,16 @@ class UserProfile: UIViewController {
         
         NSLayoutConstraint.activate([
             userMajor.topAnchor.constraint(equalTo: userName.bottomAnchor),
-            userMajor.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            userMajor.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 125)
         ])
     }
     
     private func setUpCurrentSchedule(){
+        var eachClass = ""
+        for i in user.current_schedule{
+            eachClass += String(i) + " "
+        }
+        currentSchedule.text = "current courses: " + eachClass
         currentSchedule.textColor = UIColor.black
         currentSchedule.font = .systemFont(ofSize: 16, weight: .semibold)
         
@@ -67,11 +75,16 @@ class UserProfile: UIViewController {
         
         NSLayoutConstraint.activate([
             currentSchedule.topAnchor.constraint(equalTo: userMajor.bottomAnchor),
-            currentSchedule.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            currentSchedule.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 125)
         ])
     }
     
     private func setUpPastSchedule(){
+        var eachClass = ""
+        for i in user.past_classes{
+            eachClass += String(i) + " "
+        }
+        pastSchedule.text = "past courses: " + eachClass
         pastSchedule.textColor = UIColor.black
         pastSchedule.font = .systemFont(ofSize: 16, weight: .semibold)
         
@@ -80,7 +93,7 @@ class UserProfile: UIViewController {
         
         NSLayoutConstraint.activate([
             pastSchedule.topAnchor.constraint(equalTo: currentSchedule.bottomAnchor),
-            pastSchedule.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            pastSchedule.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 125)
         ])
     }
 }

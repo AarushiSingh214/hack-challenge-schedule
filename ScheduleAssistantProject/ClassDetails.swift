@@ -15,7 +15,8 @@ class ClassDetails: UIViewController {
     private let classDescription = UILabel()
     private let instructor = UILabel()
     
-    private var users: [User] = User.dummyData2
+//    private var users: [User] = User.dummyData2
+    private var courses: [Course] = Course.dummyData
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
@@ -37,8 +38,9 @@ class ClassDetails: UIViewController {
 
     
     private func setUpCourseName(){
-        course_name.text = ""
+        course_name.text = "hihihi"
         course_name.textColor = UIColor.black
+        course_name.backgroundColor = UIColor.red
         course_name.font = .systemFont(ofSize: 16, weight: .semibold)
 
         view.addSubview(course_name)
