@@ -21,6 +21,7 @@ class ClassDetails: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = UIColor.white
         super.viewDidLoad()
+        
         setUpCourseName()
         setUpTime()
         setUpLocation()
@@ -28,17 +29,22 @@ class ClassDetails: UIViewController {
         setUpInstructor()
     }
     
-    func configure(course: Course) {
+    init(course: Course) {
         course_name.text = course.course_name
         time.text = course.time
         location.text = course.location
         classDescription.text = course.description
         instructor.text = course.instructor
+        super.init(nibName: nil, bundle: nil)
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     private func setUpCourseName(){
-        course_name.text = "hihihi"
+//        course_name.text = "hihihi"
         course_name.textColor = UIColor.black
         course_name.backgroundColor = UIColor.red
         course_name.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -47,14 +53,14 @@ class ClassDetails: UIViewController {
         course_name.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            course_name.topAnchor.constraint(equalTo: view.topAnchor),
-            course_name.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            course_name.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
+            course_name.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         ])
 
     }
     
     private func setUpTime(){
-        time.text = ""
+//        time.text = "TIME"
         time.textColor = UIColor.black
         time.font = .systemFont(ofSize: 16, weight: .semibold)
 
@@ -69,7 +75,7 @@ class ClassDetails: UIViewController {
     }
     
     private func setUpLocation(){
-        location.text = ""
+//        location.text = "LOCATION"
         location.textColor = UIColor.black
         location.font = .systemFont(ofSize: 16, weight: .semibold)
 
@@ -84,12 +90,12 @@ class ClassDetails: UIViewController {
     }
     
     private func setUpDescription(){
-        classDescription.text = ""
+//        classDescription.text = "DESCRIPTION"
         classDescription.textColor = UIColor.black
         classDescription.font = .systemFont(ofSize: 16, weight: .semibold)
 
         view.addSubview(classDescription)
-        location.translatesAutoresizingMaskIntoConstraints = false
+        classDescription.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             classDescription.topAnchor.constraint(equalTo: location.bottomAnchor, constant: 16),
@@ -98,12 +104,12 @@ class ClassDetails: UIViewController {
     }
     
     private func setUpInstructor(){
-        instructor.text = ""
+//        instructor.text = "INSTRUCTOR"
         instructor.textColor = UIColor.black
         instructor.font = .systemFont(ofSize: 16, weight: .semibold)
 
         view.addSubview(instructor)
-        location.translatesAutoresizingMaskIntoConstraints = false
+        instructor.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             instructor.topAnchor.constraint(equalTo: classDescription.bottomAnchor, constant: 16),
